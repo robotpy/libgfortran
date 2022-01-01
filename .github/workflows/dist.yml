@@ -23,7 +23,7 @@ jobs:
     - if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
       uses: robotpy/github-action-scp@atomic
       with:
-        local: dist-roborio
+        local: dist
         remote: public_html/2022/roborio
         host: narya.tortall.net
         username: ${{ secrets.SSH_USER }}
