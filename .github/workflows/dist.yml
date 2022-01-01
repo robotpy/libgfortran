@@ -1,0 +1,32 @@
+---
+name: dist
+
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.10"
+
+    - name: Install build dependencies
+      run: pip install -r requirements.txt
+
+    - name: Build packages
+      run: make package
+
+    - if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      uses: robotpy/github-action-scp@atomic
+      with:
+        local: dist-roborio
+        remote: public_html/2022/roborio
+        host: narya.tortall.net
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        atomicPut: true
