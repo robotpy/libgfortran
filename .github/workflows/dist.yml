@@ -20,7 +20,6 @@ jobs:
     - name: Build packages
       run: make package
 
-    - name: Upload artifact
     - uses: actions/upload-artifact@v3
       with:
         name: dist
