@@ -20,6 +20,12 @@ jobs:
     - name: Build packages
       run: make package
 
+    - name: Upload artifact
+    - uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+
     - if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
       uses: robotpy/github-action-scp@atomic
       with:

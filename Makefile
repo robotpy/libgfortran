@@ -11,7 +11,7 @@ ${LIBGZIP}:
 package: ${LIBGZIP}
 	rm -rf data
 	mkdir -p data/usr/local/lib
-	xtar -xf ${LIBGZIP} -C data/usr/local/lib --strip 4 \
+	tar -xf ${LIBGZIP} -C data/usr/local/lib --strip 4 \
 		'roborio-academic/arm-nilrt-linux-gnueabi/sysroot/usr/lib/libgfortran.so.5'
 
 	roborio-gen-whl data.py data -o dist
