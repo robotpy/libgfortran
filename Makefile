@@ -1,5 +1,5 @@
 
-BINRELEASE = https://github.com/wpilibsuite/opensdk/releases/download/v2023-5/cortexa9_vfpv3-roborio-academic-2023-x86_64-linux-gnu-Toolchain-12.1.0.tgz
+BINRELEASE = https://github.com/wpilibsuite/opensdk/releases/download/v2024-1/cortexa9_vfpv3-roborio-academic-2024-x86_64-linux-gnu-Toolchain-12.1.0.tgz
 LIBGZIP = $(abspath $(notdir ${BINRELEASE}))
 
 all: package

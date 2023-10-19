@@ -12,7 +12,7 @@ jobs:
     
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.11"
+        python-version: "3.12"
 
     - name: Install build dependencies
       run: pip install -r requirements.txt
@@ -26,12 +26,9 @@ jobs:
         path: dist/
 
     - if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-      uses: robotpy/github-action-scp@atomic
+      name: Publish package to WPILib artifactory
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        local: dist
-        remote: public_html/2023/roborio
-        host: narya.tortall.net
-        username: ${{ secrets.SSH_USER }}
-        privateKey: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        atomicPut: true
+        user: ${{ secrets.WPI_ARTIFACTORY_USERNAME }}
+        password: ${{ secrets.WPI_ARTIFACTORY_TOKEN }}
+        repository-url: https://wpilib.jfrog.io/artifactory/api/pypi/wpilib-python-release-2024-local
