@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.12"
+        python-version: "3.13"
 
     - name: Install build dependencies
       run: pip install -r requirements.txt
@@ -20,7 +20,7 @@ jobs:
     - name: Build packages
       run: make package
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist/
@@ -31,4 +31,4 @@ jobs:
       with:
         user: ${{ secrets.WPI_ARTIFACTORY_USERNAME }}
         password: ${{ secrets.WPI_ARTIFACTORY_TOKEN }}
-        repository-url: https://wpilib.jfrog.io/artifactory/api/pypi/wpilib-python-release-2024-local
+        repository-url: https://wpilib.jfrog.io/artifactory/api/pypi/wpilib-python-release-2025-local
